@@ -1,0 +1,20 @@
+{
+  "name": "ember-mongoose",
+  "version": "0.0.1",
+  "main": "lib/client.js",
+  "description": "Mongoose ⇆ Ember-Data",
+  "dependencies": {
+    "kelonye/ember-data": "*"
+  },
+  "development": {
+    "timoxley/assert": "*"
+  },
+  "keywords": [
+    "ember",
+    "mongoose"
+  ],
+  "scripts": [
+    "lib/client.js"
+  ],
+  "license": "MIT"
+}

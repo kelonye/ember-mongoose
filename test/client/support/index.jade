@@ -1,0 +1,37 @@
+!!!5
+html(lang='en')
+  head
+    
+    meta(charset='utf-8')
+    
+    title Tests
+
+    link(rel='stylesheet', href='../../../node_modules/mocha/mocha.css')
+
+  body
+
+    #mocha
+
+    script(src='../../../build/build.js')
+    
+    :coffeescript
+
+      require 'kelonye-ember'
+      require 'kelonye-ember-data'
+      
+      window.Adapter = require 'ember-mongoose'
+      window.assert = require 'timoxley-assert'
+
+    script(src='../../../node_modules/mocha/mocha.js')
+
+    :coffeescript
+      mocha.setup 'bdd'
+
+    script(src='../lib/index.js')
+
+    :coffeescript
+
+      if window.mochaPhantomJS
+        mochaPhantomJS.run()
+      else
+        mocha.run()

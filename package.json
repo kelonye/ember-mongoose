@@ -1,0 +1,25 @@
+{
+  "name": "ember-mongoose",
+  "version": "0.0.1",
+  "main": "lib/server/",
+  "description": "Mongoose ⇆ Ember-Data",
+  "dependencies": {
+    "debug": "*",
+    "express": "*",
+    "mongoose": "*",
+    "coffee-script": "*"
+  },
+  "keywords": [
+    "ember",
+    "mongoose"
+  ],
+  "devDependencies": {
+    "jade": "*",
+    "mocha": "*",
+    "should": "*",
+    "supertest": "*",
+    "component": "*",
+    "mocha-phantomjs": "*"
+  },
+  "license": "MIT"
+}
