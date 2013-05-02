@@ -80,7 +80,7 @@ describe 'Adapter', ->
     person = null
     people = null
 
-  describe 'findMany', ->
+  describe '#findMany', ->
     it 'makes a GET and returns matched items', (done) ->
       people = store.findMany Person, ['1', '2']
       #expectStates 'loaded', false

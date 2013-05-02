@@ -16,7 +16,7 @@ test/client/lib:
 	@mkdir -p $@
 
 test/client/support/index.html: test/client/support/index.jade
-	jade < $< > $@
+	jade --pretty < $< > $@
 
 test/client/lib/%.js: test/client/src/%.coffee
 	coffee -bcj $@ $<

@@ -1,7 +1,6 @@
 *.npm-debug.log
 node_modules/
 build/
-lib/
 components/
 test/client/lib/
 test/client/support/index.html
