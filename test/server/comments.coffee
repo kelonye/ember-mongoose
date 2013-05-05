@@ -30,7 +30,7 @@ describe 'comments', ->
           res.body.comments.length.should.equal 0
           
           request(app)
-            .get("/comments?post_id=#{post._id}")
+            .get("/comments?post_id=#{post.id}")
             .expect(200)
             .end (err, res) ->
               return throw err if err
@@ -44,36 +44,36 @@ describe 'comments', ->
         .send(
           comment:
             content: 'b'
-            post_id: post._id
+            post_id: post.id
         )
         .expect(200)
         .end (err, res) ->
           return throw err if err
           res.body.comment.content.should.equal 'b'
-          res.body.comment.post_id.should.equal post._id.toString()
+          res.body.comment.post_id.should.equal post.id
           res.body.comment.user_id.should.equal user.id
           # associated post's comments should include comment's id
-          Post.findById post._id, (err, post) ->
+          Post.findById post.id, (err, post) ->
             return throw err if err
-            post.comment_ids.should.include comment._id.toString()
+            post.comment_ids.should.include comment.id
             done()
 
   describe 'GET /:id', ->
     it 'should return a comment', (done)->
       request(app)
-        .get("/comments/#{comment._id}")
+        .get("/comments/#{comment.id}")
         .expect(200)
         .end (err, res) ->
           return throw err if err
-          res.body.comment._id.should.equal comment._id.toString()
+          res.body.comment._id.should.equal comment.id
           res.body.comment.content.should.equal 'a'
-          res.body.comment.post_id.should.equal post._id.toString()
+          res.body.comment.post_id.should.equal post.id
           done()
 
   describe 'PUT /:id', ->
     it 'should update and return comment', (done)->
       request(app)
-        .put("/comments/#{comment._id}")
+        .put("/comments/#{comment.id}")
         .send(
           comment:
             content: 'b'
@@ -82,7 +82,7 @@ describe 'comments', ->
         .end (err, res) ->
           res.body.comment.content.should.equal 'b'
           return throw err if err
-          Comment.findById comment._id, (err, comment) ->
+          Comment.findById comment.id, (err, comment) ->
             return throw err if err
             comment.content.should.equal 'b'
             done()
@@ -104,16 +104,16 @@ describe 'comments', ->
   describe 'DELETE /:id', ->
     it 'should remove a comment', (done)->
       request(app)
-        .del("/comments/#{comment._id}")
+        .del("/comments/#{comment.id}")
         .expect(200)
         .expect({})
         .end (err, res) ->
           return throw err if err
-          Comment.findById comment._id, (err, _comment) ->
+          Comment.findById comment.id, (err, _comment) ->
             return throw err if err
             should.not.exist _comment
             # comment's id should be removed from associated post's comments array
-            Post.findById post._id, (err, post) ->
+            Post.findById post.id, (err, post) ->
               return throw err if err
-              post.comment_ids.should.not.include comment._id.toString()
+              post.comment_ids.should.not.include comment.id
               done()

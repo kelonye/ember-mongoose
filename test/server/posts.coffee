@@ -65,21 +65,21 @@ describe 'posts', ->
   describe 'GET /:id', ->
     it 'should return a post', (done)->
       request(app)
-        .get("/posts/#{post._id}")
+        .get("/posts/#{post.id}")
         .expect(200)
         .end (err, res) ->
           return throw err if err
-          res.body.post._id.should.equal post._id.toString()
+          res.body.post._id.should.equal post.id
           res.body.post.title.should.equal 'a'
           res.body.post.content.should.equal 'a'
-          res.body.post.tag_ids[0].should.equal tag._id.toString()
-          res.body.post.comment_ids[0].should.equal comment._id.toString()
+          res.body.post.tag_ids[0].should.equal tag.id
+          res.body.post.comment_ids[0].should.equal comment.id
           done()
 
   describe 'PUT /:id', ->
     it 'should update and return a post', (done)->
       request(app)
-        .put("/posts/#{post._id}")
+        .put("/posts/#{post.id}")
         .send(
           post:
             title: 'b'
@@ -90,7 +90,7 @@ describe 'posts', ->
           res.body.post.title.should.equal 'b'
           res.body.post.content.should.equal 'b'
           return throw err if err
-          Post.findById post._id, (err, post) ->
+          Post.findById post.id, (err, post) ->
             return throw err if err
             post.title.should.equal 'b'
             post.content.should.equal 'b'
@@ -99,19 +99,19 @@ describe 'posts', ->
   describe 'DELETE /:id', ->
     it 'should remove a post', (done)->
       request(app)
-        .del("/posts/#{post._id}")
+        .del("/posts/#{post.id}")
         .expect(200)
         .expect({})
         .end (err, res) ->
           return throw err if err
 
-          Tag.findById tag._id, (err, tag) ->
+          Tag.findById tag.id, (err, tag) ->
             return throw err if err
             should.not.exist tag
-            Post.findById post._id, (err, post) ->
+            Post.findById post.id, (err, post) ->
               return throw err if err
               should.not.exist post
-              Comment.findById comment._id, (err, comment) ->
+              Comment.findById comment.id, (err, comment) ->
                 return throw err if err
                 should.not.exist comment
                 done()

@@ -19,7 +19,7 @@ module.exports = (model)->
       if id
         m.Model.findById id, (err, mItem) ->
           return throw err if err
-          mItem[model.hasManyName].push item._id
+          mItem[model.hasManyName].push item.id
           mItem.save (err) ->
             return throw err if err 
 
@@ -45,7 +45,7 @@ module.exports = (model)->
           else
             m.Model.findById id, (err, mItem) ->
               return throw err if err
-              mItem[model.hasManyName].remove that._id
+              mItem[model.hasManyName].remove that.id
               mItem.save (err, mItem) ->
                 return throw err if err
                 if --belongsToMutex == 0
@@ -55,7 +55,7 @@ module.exports = (model)->
         # remove records that belong to item
         for m in model.hasManyPaths
           query = {}
-          query[m.belongsToName] = @_id
+          query[m.belongsToName] = @id
           m.Model.find( query ).remove().exec (err) ->
             return throw err if err
             if --hasManyMutex == 0
