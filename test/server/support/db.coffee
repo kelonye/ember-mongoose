@@ -1,3 +1,4 @@
+Batch = require 'batch'
 models = require './models'
 
 User= models.User
@@ -32,9 +33,10 @@ exports.setUp = (done)->
         comment.save done
 
 exports.tearDown = (done)->
-  Tag.find().remove().exec (err) ->
+  #batch = new Batch
+  Post.find().remove().exec (err) ->
     return throw err if err
-    Post.find().remove().exec (err) ->
+    Tag.find().remove().exec (err) ->
       return throw err if err
       Comment.find().remove().exec (err) ->
         return throw err if err

@@ -4,7 +4,7 @@
   "main": "lib/server/",
   "description": "Mongoose ⇆ Ember-Data",
   "dependencies": {
-    "debug": "*",
+    "batch": "*",
     "express": "*",
     "mongoose": "*",
     "coffee-script": "*"

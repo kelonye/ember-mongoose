@@ -1,5 +1,9 @@
 module.exports = (model)->
 
+  l = console.log 
+
+  Batch = require 'batch'
+
   items = {}
 
   Model = model.Model
@@ -25,49 +29,47 @@ module.exports = (model)->
 
   Model.schema.pre 'remove', (next) ->
 
-    that = @
-
-    belongsToMutex = model.belongsToPaths.length
-    hasManyMutex = model.hasManyPaths.length
-
-    if belongsToMutex == 0 and hasManyMutex == 0
+    if model.belongsToPaths.length == model.hasManyPaths.length == 0
       return next()
 
     else
 
-      handleBelongsTos = (fn)->
-        # remove id from .hasManys of other records
-        for m in model.belongsToPaths
+      that = @
+
+      # remove id from .hasManys of other records
+      # "if anyone contains me .."
+      batch = new Batch
+
+      for m in model.belongsToPaths
+        do (m)->
           id = that[m.belongsToName]
-          if !id
-            if --belongsToMutex == 0
-              fn()
-          else
-            m.Model.findById id, (err, mItem) ->
-              return throw err if err
-              mItem[model.hasManyName].remove that.id
-              mItem.save (err, mItem) ->
-                return throw err if err
-                if --belongsToMutex == 0
-                  fn()
+          if id
+            batch.push (fn)->
+              m.Model.findById id, (err, item) ->
+                return fn err if err
+                item[model.hasManyName].remove that.id
+                item.save (err)->
+                  if err and err.message == 'No matching document found.'
+                    err = null
+                  fn err
 
-      handleHasManys = (fn)->
+      batch.end (err)->
+
+        return next err if err
         # remove records that belong to item
-        for m in model.hasManyPaths
-          query = {}
-          query[m.belongsToName] = @id
-          m.Model.find( query ).remove().exec (err) ->
-            return throw err if err
-            if --hasManyMutex == 0
-              fn()
+        # "if anyone points to me ..."
+        batch = new Batch
 
-      if belongsToMutex == 0
-        handleHasManys next
-      else if hasManyMutex == 0
-        handleBelongsTos next
-      else
-        handleBelongsTos ->
-          handleHasManys next
+        for m in model.hasManyPaths
+          do (m)->
+            batch.push (fn)->
+              query = {}
+              query[model.belongsToName] = that.id
+              m.Model.find(query).remove fn
+
+        batch.end next
+
+
 
   items.all = (req, res) ->
     

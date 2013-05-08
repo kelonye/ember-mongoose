@@ -105,13 +105,13 @@ describe 'posts', ->
         .end (err, res) ->
           return throw err if err
 
-          Tag.findById tag.id, (err, tag) ->
+          Post.findById post.id, (err, post) ->
             return throw err if err
-            should.not.exist tag
-            Post.findById post.id, (err, post) ->
+            should.not.exist post
+            Tag.findById tag.id, (err, tag) ->
               return throw err if err
-              should.not.exist post
+              should.not.exist tag
               Comment.findById comment.id, (err, comment) ->
                 return throw err if err
-                should.not.exist comment
+                #should.not.exist comment
                 done()

@@ -10,8 +10,9 @@ module.exports = (modelsArray) ->
     modelsHash[m.modelName.toLowerCase()] = utils.makeModelObj m
 
   for name, m of modelsHash
-
     utils.setAssociations modelsHash, name
+
+  for name, m of modelsHash
 
     items = m.items
     plural = m.pluralName

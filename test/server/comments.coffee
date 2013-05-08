@@ -26,14 +26,14 @@ describe 'comments', ->
         .get("/comments?post_id=1")
         .expect(200)
         .end (err, res) ->
-          return throw err if err
+          return done err if err
           res.body.comments.length.should.equal 0
           
           request(app)
             .get("/comments?post_id=#{post.id}")
             .expect(200)
             .end (err, res) ->
-              return throw err if err
+              return done err if err
               res.body.comments.length.should.equal 1
               done()
 
@@ -48,13 +48,13 @@ describe 'comments', ->
         )
         .expect(200)
         .end (err, res) ->
-          return throw err if err
+          return done err if err
           res.body.comment.content.should.equal 'b'
           res.body.comment.post_id.should.equal post.id
           res.body.comment.user_id.should.equal user.id
           # associated post's comments should include comment's id
           Post.findById post.id, (err, post) ->
-            return throw err if err
+            return done err if err
             post.comment_ids.should.include comment.id
             done()
 
@@ -64,7 +64,7 @@ describe 'comments', ->
         .get("/comments/#{comment.id}")
         .expect(200)
         .end (err, res) ->
-          return throw err if err
+          return done err if err
           res.body.comment._id.should.equal comment.id
           res.body.comment.content.should.equal 'a'
           res.body.comment.post_id.should.equal post.id
@@ -81,9 +81,9 @@ describe 'comments', ->
         .expect(200)
         .end (err, res) ->
           res.body.comment.content.should.equal 'b'
-          return throw err if err
+          return done err if err
           Comment.findById comment.id, (err, comment) ->
-            return throw err if err
+            return done err if err
             comment.content.should.equal 'b'
             done()
 
@@ -97,7 +97,7 @@ describe 'comments', ->
         )
         .expect(200)
         .end (err, res) ->
-          return throw err if err
+          return done err if err
           res.body.comments.length.should.equal 1
           done()
 
@@ -108,12 +108,12 @@ describe 'comments', ->
         .expect(200)
         .expect({})
         .end (err, res) ->
-          return throw err if err
+          return done err if err
           Comment.findById comment.id, (err, _comment) ->
-            return throw err if err
+            return done err if err
             should.not.exist _comment
             # comment's id should be removed from associated post's comments array
             Post.findById post.id, (err, post) ->
-              return throw err if err
+              return done err if err
               post.comment_ids.should.not.include comment.id
               done()
