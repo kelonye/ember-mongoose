@@ -7,6 +7,7 @@ module.exports = (modelsArray) ->
 
   modelsHash = {}
   for m in modelsArray
+    #m.schema.set 'versionKey', false
     modelsHash[m.modelName.toLowerCase()] = utils.makeModelObj m
 
   for name, m of modelsHash

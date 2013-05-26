@@ -49,6 +49,7 @@ module.exports = (model)->
                 return fn err if err
                 item[model.hasManyName].remove that.id
                 item.save (err)->
+                  console.log err
                   if err and err.message == 'No matching document found.'
                     err = null
                   fn err
