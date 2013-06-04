@@ -23,7 +23,8 @@ module.exports = (model)->
       if id
         m.Model.findById id, (err, mItem) ->
           return throw err if err
-          mItem[model.hasManyName].push item.id
+          if item.id
+            mItem[model.hasManyName].push item.id
           mItem.save (err) ->
             return throw err if err 
 
@@ -49,9 +50,6 @@ module.exports = (model)->
                 return fn err if err
                 item[model.hasManyName].remove that.id
                 item.save (err)->
-                  console.log err
-                  if err and err.message == 'No matching document found.'
-                    err = null
                   fn err
 
       batch.end (err)->

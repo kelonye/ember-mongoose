@@ -58,7 +58,7 @@ schema = new mongoose.Schema
     default: Date.now
   title: String
   content: String
-  comment_ids: Array
+  comment_ids: [String]
   tag_ids: Array
 schema.methods.__isCreatable__ = ensure.superuser
 schema.methods.__isReadable__ = ensure.any

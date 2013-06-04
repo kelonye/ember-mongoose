@@ -22,14 +22,14 @@ exports.setUp = (done)->
 
       global.tag = new Tag
         name: 'a'
-        post_id: post.id
+        post_id: post._id
       tag.save (err, tag) ->
         return throw err if err
 
         global.comment = new Comment
           content: 'a'
-          user_id: user.id
-          post_id: post.id
+          user_id: user._id
+          post_id: post._id
         comment.save done
 
 exports.tearDown = (done)->
