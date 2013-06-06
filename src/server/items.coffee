@@ -123,7 +123,7 @@ module.exports = (model)->
         res.send json
 
   items.update = (req, res) ->
-    Model.findByIdAndUpdate req.params.id, req.body[singular], (err, item) ->
+    Model.findById req.params.id, (err, item) ->
       return res.send err if err
 
       item.__isUpdatable__ req, (err, can) ->
@@ -131,9 +131,19 @@ module.exports = (model)->
         if can != true
           return res.send can
 
-        json = {}
-        json[singular] = item
-        res.send json
+        item.update req.body[singular], (err)->
+          return res.send err if err
+
+          Model.findById req.params.id, (err, item) ->
+            return res.send err if err
+
+            # mock post save
+            item.save (err, item) ->
+              return res.send err if err
+
+              json = {}
+              json[singular] = item
+              res.send json
 
   items.remove = (req, res) ->
      Model.findById req.params.id, (err, item) ->
