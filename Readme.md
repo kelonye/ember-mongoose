@@ -1,20 +1,22 @@
 Install
 ---
 
-    $ npm install git+https://github.com/kelonye/ember-mongoose.git
+    $ npm install ember-mongoose
     $ component install kelonye/ember-mongoose
 
 Example
 ---
 
   - [Blog](http://github.com/kelonye/blog)
+  - [WCMS](http://github.com/kelonye/wcms)
+  - [Pitchas](http://pitchas-kelonye.rhcloud.com)
 
 Usage
 ---
 
 ```
 
-# server.js
+// server.js
 
 var schema = new mongoose.Schema(
   {
@@ -57,7 +59,7 @@ var embermongoose = require('ember-mongoose')
 app.use(embermongoose(models));
 app.listen(3000);
 
-# client.js
+// client.js
 
 App.Adapter = require('ember-mongoose');
 App.Store = DS.Store.extend({
