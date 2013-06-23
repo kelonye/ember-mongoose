@@ -1,7 +1,7 @@
 {
   "name": "ember-mongoose",
   "version": "0.0.3",
-  "main": "lib/client.js",
+  "main": "lib/client/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "dependencies": {
     "kelonye/ember-data": "*"
@@ -14,7 +14,7 @@
     "mongoose"
   ],
   "scripts": [
-    "lib/client.js"
+    "lib/client/index.js"
   ],
   "license": "MIT"
 }
