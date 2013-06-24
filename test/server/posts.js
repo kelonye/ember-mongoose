@@ -45,7 +45,7 @@ describe('posts', function() {
     });
   });
   describe('POST:QUERY /', function() {
-    it('should return matched items', function(done) {
+    it('should return matched posts', function(done) {
       request(app)
         .post('/posts').send({ q: {
           title: 'a'

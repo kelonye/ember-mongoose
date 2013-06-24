@@ -17,7 +17,7 @@ describe('comments', function() {
     db.tearDown(done);
   });
   describe('GET /', function() {
-    it('should a list of comments on query', function(done) {
+    it('should return a list of comments', function(done) {
       request(app)
         .get('/comments')
         .expect(200).end(function(err, res) {
@@ -28,7 +28,7 @@ describe('comments', function() {
     });
   });
   describe('POST /', function() {
-    it('should create and a comment', function(done) {
+    it('should create and return a comment', function(done) {
       request(app)
         .post('/comments').send({ comment: {
           content: 'b',
@@ -48,7 +48,7 @@ describe('comments', function() {
     });
   });
   describe('GET /:id', function() {
-    it('should a comment', function(done) {
+    it('should return a comment', function(done) {
       request(app)
         .get('/comments/' + comment.id)
         .expect(200)
@@ -62,7 +62,7 @@ describe('comments', function() {
     });
   });
   describe('PUT /:id', function() {
-    it('should update and comment', function(done) {
+    it('should update and return comment', function(done) {
       request(app)
         .put('/comments/' + comment.id)
         .send({ comment: {
@@ -81,7 +81,7 @@ describe('comments', function() {
     });
   });
   describe('POST:QUERY /', function() {
-    it('should matched items', function(done) {
+    it('should return matched posts', function(done) {
       request(app)
         .post('/comments')
         .send({ q: {

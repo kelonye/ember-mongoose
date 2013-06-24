@@ -17,7 +17,7 @@ describe('tags', function() {
     db.tearDown(done);
   });
   describe('GET /', function() {
-    it('should a list of tags on query', function(done) {
+    it('should return a list of tags', function(done) {
       request(app)
         .get('/tags')
         .expect(200)
@@ -29,7 +29,7 @@ describe('tags', function() {
     });
   });
   describe('POST /', function() {
-    it('should create and a tag', function(done) {
+    it('should create and return a tag', function(done) {
       request(app)
         .post('/tags')
         .send({ tag: {
@@ -50,7 +50,7 @@ describe('tags', function() {
     });
   });
   describe('POST:QUERY /', function() {
-    it('should matched items', function(done) {
+    it('should return matched tags', function(done) {
       request(app)
         .post('/tags')
         .send({ q: {
@@ -69,7 +69,7 @@ describe('tags', function() {
     });
   });
   describe('GET /:id', function() {
-    it('should a tag', function(done) {
+    it('should return a tag', function(done) {
       request(app)
         .get('/tags/' + tag.id)
         .expect(200)
@@ -83,7 +83,7 @@ describe('tags', function() {
     });
   });
   describe('PUT /:id', function() {
-    it('should update and tag', function(done) {
+    it('should update and return a tag', function(done) {
       request(app)
         .put('/tags/' + tag.id).send({ tag: {
           name: 'b'
