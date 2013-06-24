@@ -16,18 +16,12 @@ Usage
 
 ```
 
-// server.js
+// models.js
 
-var schema = new mongoose.Schema(
+exports.Post = schema = new mongoose.Schema(
   {
-    date: {
-      type: Date,
-      default: Date.now 
-    },
     title: String,
-    content: String,
-    comment_ids: Array,
-    tag_ids: Array
+    content: String
   } , {
     versionKey: false
   }
@@ -44,26 +38,36 @@ schema.methods.__isUpdatable__ = function(req, cb){
 schema.methods.__isRemovable__ = function(req, cb){
   fn(null, 403);
 }
-Post = mongo.model('Post', schema);
 
-...
+
+// apis.js
 
 var embermongoose = require('ember-mongoose')
-  , models = [
-    Post,
-    User,
-    Tag,
-    Comment
-  ]
-  , app = express();
-app.use(embermongoose(models));
+  , models = require('./models');
+
+var apis = new embermongoose.Apis();
+apis.setModels(models);
+
+apis.Post = new embermongoose.Api()
+  .setModel(models.Post)
+  .setFields(['name' , 'content']);
+
+module.exports = apis.getURIS();
+
+
+// server.js
+
+var express = require('express')
+  , apis = require('./apis');
+var app = express();
+app.use(apis.getURIS());
 app.listen(3000);
+
 
 // client.js
 
 App.Adapter = require('ember-mongoose');
 App.Store = DS.Store.extend({
-  revision: DS.CURRENT_API_REVISION,
   adapter: 'App.Adapter'
 });
 ```
