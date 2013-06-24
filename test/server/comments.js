@@ -62,7 +62,7 @@ describe('comments', function() {
     });
   });
   describe('PUT /:id', function() {
-    it('should update and return comment', function(done) {
+    it('should update and return a comment', function(done) {
       request(app)
         .put('/comments/' + comment.id)
         .send({ comment: {
@@ -80,7 +80,7 @@ describe('comments', function() {
         });
     });
   });
-  describe('POST:QUERY /', function() {
+  describe('QUERY /', function() {
     it('should return matched posts', function(done) {
       request(app)
         .post('/comments')

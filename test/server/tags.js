@@ -49,7 +49,7 @@ describe('tags', function() {
         });
     });
   });
-  describe('POST:QUERY /', function() {
+  describe('QUERY /', function() {
     it('should return matched tags', function(done) {
       request(app)
         .post('/tags')

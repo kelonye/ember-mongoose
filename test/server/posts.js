@@ -44,7 +44,7 @@ describe('posts', function() {
         });
     });
   });
-  describe('POST:QUERY /', function() {
+  describe('QUERY /', function() {
     it('should return matched posts', function(done) {
       request(app)
         .post('/posts').send({ q: {
