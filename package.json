@@ -1,7 +1,7 @@
 {
   "name": "ember-mongoose",
   "version": "0.0.3",
-  "main": "lib/server/",
+  "main": "lib/server/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "keywords": [
     "ember",
