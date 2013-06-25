@@ -41,7 +41,7 @@ schema.methods.__isUpdatable__ = function(req, cb){
 schema.methods.__isRemovable__ = function(req, cb){
   fn(null, 403);
 }
-
+exports.Post = mongo.model('Post', schema);
 
 // apis.js
 
