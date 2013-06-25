@@ -15,7 +15,7 @@ var schema = new mongoose.Schema(
       comment_ids: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment',
-        path: 'user_id'
+        //path: 'user_id'
       }]
   }, {
       versionKey: false
@@ -35,7 +35,7 @@ var schema = new mongoose.Schema(
       post_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
-        path: 'tag_ids'
+        //path: 'tag_ids'
       }
   }, {
       versionKey: false
@@ -59,12 +59,12 @@ schema = new mongoose.Schema(
       post_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
-        path: 'comment_ids'
+        //path: 'comment_ids'
       },
       user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        path: 'comment_ids'
+        //path: 'comment_ids'
       }
   }, {
       versionKey: false
@@ -92,12 +92,12 @@ schema = new mongoose.Schema(
       comment_ids: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment',
-        path: 'post_id'
+        //path: 'post_id'
       }],
       tag_ids: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tag',
-        path: 'post_id'
+        //path: 'post_id'
       }]
   }, {
       versionKey: false
