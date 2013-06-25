@@ -14,8 +14,7 @@ var schema = new mongoose.Schema(
       is_super_user: Boolean,
       comment_ids: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment',
-        path: 'user_id' // User.comment_ids ⇆ Comment.user_id
+        ref: 'Comment'
       }]
   }, {
       versionKey: false
@@ -69,7 +68,7 @@ schema = new mongoose.Schema(
 );
 schema.plugin(timestamps());
 schema.methods.__isCreatable__ = function(req, cb) {
-  if (this.user_id == null) this.user_id = req.user.id
+  this.user_id = req.user._id;
   return ensure.user(req, cb);
 };
 schema.methods.__isReadable__ = ensure.any;
@@ -88,13 +87,11 @@ schema = new mongoose.Schema(
       content: String,
       comment_ids: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment',
-        path: 'post_id'
+        ref: 'Comment'
       }],
       tag_ids: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tag',
-        path: 'post_id'
+        ref: 'Tag'
       }]
   }, {
       versionKey: false
