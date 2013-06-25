@@ -14,7 +14,8 @@ var schema = new mongoose.Schema(
       is_super_user: Boolean,
       comment_ids: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
+        ref: 'Comment',
+        path: 'user_id' // User.comment_ids ⇆ Comment.user_id
       }]
   }, {
       versionKey: false
@@ -87,11 +88,13 @@ schema = new mongoose.Schema(
       content: String,
       comment_ids: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
+        ref: 'Comment',
+        path: 'post_id'
       }],
       tag_ids: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tag'
+        ref: 'Tag',
+        path: 'post_id'
       }]
   }, {
       versionKey: false

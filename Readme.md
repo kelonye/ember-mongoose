@@ -26,6 +26,9 @@ exports.Post = schema = new mongoose.Schema(
     versionKey: false
   }
 )
+
+// set schema permissions
+
 schema.methods.__isCreatable__ = function(req, cb){
   fn(null, 403);
 }
@@ -46,11 +49,11 @@ var embermongoose = require('ember-mongoose')
   , models = require('./models');
 
 var apis = new embermongoose.Apis();
-apis.setModels(models);
+apis.setModels(models); // todo: remove this
 
 apis.Post = new embermongoose.Api()
   .setModel(models.Post)
-  .setFields(['name' , 'content']);
+  .setPaths(['name' , 'content']); // paths to output to json
 
 module.exports = apis.getURIS();
 

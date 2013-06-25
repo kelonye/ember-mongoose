@@ -4,23 +4,21 @@ var embermongoose = require('../../../')
 var apis = new embermongoose.Apis();
 apis.setModels(models);
 
-apis.Post = new embermongoose.Api()
-  .setModel(models.Post)
-  .setFields(['name' , 'content']);
-
-
-apis.Tag = new embermongoose.Api()
-  .setModel(models.Tag)
-  .setFields(['name' , 'content']);
-
-
-apis.Comment = new embermongoose.Api()
-  .setModel(models.Comment)
-  .setFields(['name' , 'content']);
-
 
 apis.User = new embermongoose.Api()
   .setModel(models.User)
-  .setFields(['name' , 'content']);
+  .setPaths(['name' , 'is_super_user', 'comment_ids']);
+
+apis.Tag = new embermongoose.Api()
+  .setModel(models.Tag)
+  .setPaths(['name' , 'post_id']);
+
+apis.Comment = new embermongoose.Api()
+  .setModel(models.Comment)
+  .setPaths(['content' , 'post_id', 'user_id']);
+
+apis.Post = new embermongoose.Api()
+  .setModel(models.Post)
+  .setPaths(['title' , 'content', 'comment_ids', 'tag_ids']);
 
 module.exports = apis.getURIS();
