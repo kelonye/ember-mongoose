@@ -30,16 +30,16 @@ exports.Post = schema = new mongoose.Schema(
 // set schema permissions
 
 schema.methods.__isCreatable__ = function(req, cb){
-  fn(null, 403);
+  cb(null, 403);
 }
 schema.methods.__isReadable__ = function(req, cb){
-  fn(null, true);
+  cb(null, true);
 }
 schema.methods.__isUpdatable__ = function(req, cb){
-  fn(null, 403);
+  cb(null, 403);
 }
 schema.methods.__isRemovable__ = function(req, cb){
-  fn(null, 403);
+  cb(null, 403);
 }
 exports.Post = mongo.model('Post', schema);
 
@@ -49,14 +49,13 @@ var embermongoose = require('ember-mongoose')
   , models = require('./models');
 
 var apis = new embermongoose.Apis();
-apis.setModels(models); // todo: remove this
 
-apis.Post = new embermongoose.Api()
+var api = new embermongoose.Api()
   .setModel(models.Post)
-  .setPaths(['name' , 'content']); // paths to output to json
+  .setPaths(['title' , 'content', 'comment_ids', 'tag_ids']);
+apis.set('Post', api);
 
 module.exports = apis.getURIS();
-
 
 // server.js
 
