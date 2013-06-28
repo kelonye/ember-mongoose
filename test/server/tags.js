@@ -41,11 +41,7 @@ describe('tags', function() {
           if (err) throw err
           res.body.tag.name.should.equal('b');
           res.body.tag.post_id.should.equal(post.id);
-          Post.findById(post.id, function(err, post) {
-            if (err) throw err
-            post.tag_ids.should.include(tag.id);
-            done();
-          });
+          done();
         });
     });
   });
@@ -111,11 +107,7 @@ describe('tags', function() {
           Tag.findById(tag.id, function(err, _tag) {
             if (err) throw err
             should.not.exist(_tag);
-            Post.findById(post.id, function(err, post) {
-              if (err) throw err
-              post.tag_ids.should.not.include(tag.id);
-              done();
-            });
+            done();
           });
         });
     });

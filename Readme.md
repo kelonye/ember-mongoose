@@ -46,14 +46,13 @@ exports.Post = mongo.model('Post', schema);
 // apis.js
 
 var embermongoose = require('ember-mongoose')
-  , models = require('./models');
+var models = require('./models');
+var apis = new embermongoose.Apis(models);
 
-var apis = new embermongoose.Apis();
-
-var api = new embermongoose.Api()
-  .setModel(models.Post)
-  .setPaths(['title' , 'content', 'comment_ids', 'tag_ids']);
-apis.set('Post', api);
+apis.Post.setPaths([
+    'title'
+  , 'content'
+]);
 
 module.exports = apis.getURIS();
 

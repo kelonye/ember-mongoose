@@ -68,8 +68,6 @@ describe('posts', function() {
           res.body.post._id.should.equal(post.id);
           res.body.post.title.should.equal('a');
           res.body.post.content.should.equal('a');
-          res.body.post.tag_ids[0].should.equal(tag.id);
-          res.body.post.comment_ids[0].should.equal(comment.id);
           done();
         });
     });

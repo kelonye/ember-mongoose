@@ -39,11 +39,7 @@ describe('comments', function() {
           res.body.comment.content.should.equal('b');
           res.body.comment.post_id.should.equal(post.id);
           res.body.comment.user_id.should.equal(user.id);
-          Post.findById(post.id, function(err, post) {
-            if (err) done(err)
-            post.comment_ids.should.include(comment.id);
-            done();
-          });
+          done();
         });
     });
   });
@@ -106,11 +102,7 @@ describe('comments', function() {
           Comment.findById(comment.id, function(err, _comment) {
             if (err) done(err)
             should.not.exist(_comment);
-            Post.findById(post.id, function(err, post) {
-              if (err) done(err)
-              post.comment_ids.should.not.include(comment.id);
-              done();
-            });
+            done();
           });
         });
     });

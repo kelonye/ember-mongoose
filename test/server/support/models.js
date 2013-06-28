@@ -11,12 +11,7 @@ if (!global.mongo) global.mongo = require('./mongo')
 var schema = new mongoose.Schema(
   {
       name: String,
-      is_super_user: Boolean,
-      comment_ids: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment',
-        //path: 'user_id'
-      }]
+      is_super_user: Boolean
   }, {
       versionKey: false
   }
@@ -32,11 +27,7 @@ exports.User = mongo.model('User', schema);
 var schema = new mongoose.Schema(
   {
       name: String,
-      post_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post',
-        //path: 'tag_ids'
-      }
+      post_id: String
   }, {
       versionKey: false
   }
@@ -56,16 +47,8 @@ exports.Tag = mongo.model('Tag', schema);
 schema = new mongoose.Schema(
   {
       content: String,
-      post_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post',
-        //path: 'comment_ids'
-      },
-      user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        //path: 'comment_ids'
-      }
+      post_id: String,
+      user_id: String
   }, {
       versionKey: false
   }
@@ -88,17 +71,7 @@ exports.Comment = mongo.model('Comment', schema);
 schema = new mongoose.Schema(
   {
       title: String,
-      content: String,
-      comment_ids: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment',
-        //path: 'post_id'
-      }],
-      tag_ids: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tag',
-        //path: 'post_id'
-      }]
+      content: String
   }, {
       versionKey: false
   }

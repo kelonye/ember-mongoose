@@ -20,14 +20,14 @@ exports.setUp = function(done) {
       if (err) throw err
       global.tag = new Tag({
         name: 'a',
-        post_id: post._id
+        post_id: post.id
       });
       tag.save(function(err, tag) {
         if (err) throw err
         global.comment = new Comment({
           content: 'a',
-          user_id: user._id,
-          post_id: post._id
+          user_id: user.id,
+          post_id: post.id
         });
         comment.save(done);
       });
