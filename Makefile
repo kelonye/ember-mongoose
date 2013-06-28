@@ -10,6 +10,9 @@ components:
 public: components
 	@component build --dev -n $@ -o $@
 
+publish:
+	@npm publish
+
 clean:
 	@rm -rf public
 
