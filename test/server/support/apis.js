@@ -9,7 +9,7 @@ var models = require('./models');
   * Apis
   */
 
-var apis = new embermongoose.Apis(models);
+var apis = embermongoose(models);
 
 apis.User.setPaths([
     'name'

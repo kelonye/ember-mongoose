@@ -47,7 +47,7 @@ exports.Post = mongo.model('Post', schema);
 
 var embermongoose = require('ember-mongoose')
 var models = require('./models');
-var apis = new embermongoose.Apis(models);
+var apis = embermongoose(models);
 
 apis.Post.setPaths([
     'title'
