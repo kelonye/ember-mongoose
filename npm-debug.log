@@ -1,0 +1,188 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/me/.nvm/v0.10.12/bin/node',
+1 verbose cli   '/home/me/.nvm/v0.10.12/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@1.2.32
+3 info using node@v0.10.12
+4 verbose publish [ '.' ]
+5 verbose read json /home/me/Documents/src/kelonye/ember-mongoose/package.json
+6 warn package.json ember-mongoose@0.0.6 No repository field.
+7 verbose cache add [ '.', null ]
+8 verbose cache add name=undefined spec="." args=[".",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: '.',
+9 verbose parsed url   path: '.',
+9 verbose parsed url   href: '.' }
+10 silly lockFile 3a52ce78- .
+11 verbose lock . /home/me/.npm/3a52ce78-.lock
+12 verbose read json package.json
+13 verbose tar pack [ '/home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz',
+13 verbose tar pack   '.' ]
+14 verbose tarball /home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+15 verbose folder .
+16 info prepublish ember-mongoose@0.0.6
+17 silly lockFile 1f1177db-tar tar://.
+18 verbose lock tar://. /home/me/.npm/1f1177db-tar.lock
+19 silly lockFile 44e37805-08244-0-1530122251715511-tmp-tgz tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+20 verbose lock tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz /home/me/.npm/44e37805-08244-0-1530122251715511-tmp-tgz.lock
+21 silly lockFile 1f1177db-tar tar://.
+22 silly lockFile 1f1177db-tar tar://.
+23 silly lockFile 44e37805-08244-0-1530122251715511-tmp-tgz tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+24 silly lockFile 44e37805-08244-0-1530122251715511-tmp-tgz tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+25 verbose tar unpack /home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+26 silly lockFile c43e1935-08244-0-1530122251715511-package tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+27 verbose lock tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package /home/me/.npm/c43e1935-08244-0-1530122251715511-package.lock
+28 silly lockFile 44e37805-08244-0-1530122251715511-tmp-tgz tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+29 verbose lock tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz /home/me/.npm/44e37805-08244-0-1530122251715511-tmp-tgz.lock
+30 silly gunzTarPerm modes [ '755', '644' ]
+31 silly gunzTarPerm extractEntry package.json
+32 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+33 silly gunzTarPerm extractEntry .npmignore
+34 silly gunzTarPerm modified mode [ '.npmignore', 436, 420 ]
+35 silly gunzTarPerm extractEntry Makefile
+36 silly gunzTarPerm modified mode [ 'Makefile', 436, 420 ]
+37 silly gunzTarPerm extractEntry Readme.md
+38 silly gunzTarPerm modified mode [ 'Readme.md', 436, 420 ]
+39 silly gunzTarPerm extractEntry component.json
+40 silly gunzTarPerm modified mode [ 'component.json', 436, 420 ]
+41 silly gunzTarPerm extractEntry lib/client/index.js
+42 silly gunzTarPerm modified mode [ 'lib/client/index.js', 436, 420 ]
+43 silly gunzTarPerm extractEntry lib/server/index.js
+44 silly gunzTarPerm modified mode [ 'lib/server/index.js', 436, 420 ]
+45 silly gunzTarPerm extractEntry test/client/index.js
+46 silly gunzTarPerm modified mode [ 'test/client/index.js', 436, 420 ]
+47 silly gunzTarPerm extractEntry test/client/index.html
+48 silly gunzTarPerm modified mode [ 'test/client/index.html', 436, 420 ]
+49 silly gunzTarPerm extractEntry test/server/comments.js
+50 silly gunzTarPerm modified mode [ 'test/server/comments.js', 436, 420 ]
+51 silly gunzTarPerm extractEntry test/server/posts.js
+52 silly gunzTarPerm modified mode [ 'test/server/posts.js', 436, 420 ]
+53 silly gunzTarPerm extractEntry test/server/tags.js
+54 silly gunzTarPerm modified mode [ 'test/server/tags.js', 436, 420 ]
+55 silly gunzTarPerm extractEntry test/server/support/apis.js
+56 silly gunzTarPerm modified mode [ 'test/server/support/apis.js', 436, 420 ]
+57 silly gunzTarPerm extractEntry test/server/support/db.js
+58 silly gunzTarPerm modified mode [ 'test/server/support/db.js', 436, 420 ]
+59 silly gunzTarPerm extractEntry test/server/support/ensure.js
+60 silly gunzTarPerm modified mode [ 'test/server/support/ensure.js', 436, 420 ]
+61 silly gunzTarPerm extractEntry test/server/support/index.js
+62 silly gunzTarPerm modified mode [ 'test/server/support/index.js', 436, 420 ]
+63 silly gunzTarPerm extractEntry test/server/support/models.js
+64 silly gunzTarPerm modified mode [ 'test/server/support/models.js', 436, 420 ]
+65 silly gunzTarPerm extractEntry test/server/support/mongo.js
+66 silly gunzTarPerm modified mode [ 'test/server/support/mongo.js', 436, 420 ]
+67 silly gunzTarPerm extractEntry test/server/support/session.js
+68 silly gunzTarPerm modified mode [ 'test/server/support/session.js', 436, 420 ]
+69 silly gunzTarPerm extractEntry test/server/support/strategy.js
+70 silly gunzTarPerm modified mode [ 'test/server/support/strategy.js', 436, 420 ]
+71 verbose read json /home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package/package.json
+72 silly lockFile c43e1935-08244-0-1530122251715511-package tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+73 silly lockFile c43e1935-08244-0-1530122251715511-package tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+74 silly lockFile 44e37805-08244-0-1530122251715511-tmp-tgz tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+75 silly lockFile 44e37805-08244-0-1530122251715511-tmp-tgz tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/tmp.tgz
+76 verbose from cache /home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package/package.json
+77 verbose tar pack [ '/home/me/.npm/ember-mongoose/0.0.6/package.tgz',
+77 verbose tar pack   '/home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package' ]
+78 verbose tarball /home/me/.npm/ember-mongoose/0.0.6/package.tgz
+79 verbose folder /home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+80 silly lockFile c43e1935-08244-0-1530122251715511-package tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+81 verbose lock tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package /home/me/.npm/c43e1935-08244-0-1530122251715511-package.lock
+82 silly lockFile 668f7b1f-ember-mongoose-0-0-6-package-tgz tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz
+83 verbose lock tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz /home/me/.npm/668f7b1f-ember-mongoose-0-0-6-package-tgz.lock
+84 silly lockFile c43e1935-08244-0-1530122251715511-package tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+85 silly lockFile c43e1935-08244-0-1530122251715511-package tar:///home/me/tmp/npm-7750/1372444908244-0.1530122251715511/package
+86 silly lockFile 668f7b1f-ember-mongoose-0-0-6-package-tgz tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz
+87 silly lockFile 668f7b1f-ember-mongoose-0-0-6-package-tgz tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz
+88 silly lockFile 97bcbec5-npm-ember-mongoose-0-0-6-package /home/me/.npm/ember-mongoose/0.0.6/package
+89 verbose lock /home/me/.npm/ember-mongoose/0.0.6/package /home/me/.npm/97bcbec5-npm-ember-mongoose-0-0-6-package.lock
+90 silly lockFile 97bcbec5-npm-ember-mongoose-0-0-6-package /home/me/.npm/ember-mongoose/0.0.6/package
+91 silly lockFile 97bcbec5-npm-ember-mongoose-0-0-6-package /home/me/.npm/ember-mongoose/0.0.6/package
+92 verbose tar unpack /home/me/.npm/ember-mongoose/0.0.6/package.tgz
+93 silly lockFile 4638506c-npm-ember-mongoose-0-0-6-package tar:///home/me/.npm/ember-mongoose/0.0.6/package
+94 verbose lock tar:///home/me/.npm/ember-mongoose/0.0.6/package /home/me/.npm/4638506c-npm-ember-mongoose-0-0-6-package.lock
+95 silly lockFile 668f7b1f-ember-mongoose-0-0-6-package-tgz tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz
+96 verbose lock tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz /home/me/.npm/668f7b1f-ember-mongoose-0-0-6-package-tgz.lock
+97 silly gunzTarPerm modes [ '755', '644' ]
+98 silly gunzTarPerm extractEntry package.json
+99 silly gunzTarPerm extractEntry .npmignore
+100 silly gunzTarPerm extractEntry Makefile
+101 silly gunzTarPerm extractEntry Readme.md
+102 silly gunzTarPerm extractEntry component.json
+103 silly gunzTarPerm extractEntry lib/client/index.js
+104 silly gunzTarPerm extractEntry lib/server/index.js
+105 silly gunzTarPerm extractEntry test/client/index.js
+106 silly gunzTarPerm extractEntry test/client/index.html
+107 silly gunzTarPerm extractEntry test/server/comments.js
+108 silly gunzTarPerm extractEntry test/server/posts.js
+109 silly gunzTarPerm extractEntry test/server/tags.js
+110 silly gunzTarPerm extractEntry test/server/support/apis.js
+111 silly gunzTarPerm extractEntry test/server/support/db.js
+112 silly gunzTarPerm extractEntry test/server/support/ensure.js
+113 silly gunzTarPerm extractEntry test/server/support/index.js
+114 silly gunzTarPerm extractEntry test/server/support/models.js
+115 silly gunzTarPerm extractEntry test/server/support/mongo.js
+116 silly gunzTarPerm extractEntry test/server/support/session.js
+117 silly gunzTarPerm extractEntry test/server/support/strategy.js
+118 verbose read json /home/me/.npm/ember-mongoose/0.0.6/package/package.json
+119 silly lockFile 4638506c-npm-ember-mongoose-0-0-6-package tar:///home/me/.npm/ember-mongoose/0.0.6/package
+120 silly lockFile 4638506c-npm-ember-mongoose-0-0-6-package tar:///home/me/.npm/ember-mongoose/0.0.6/package
+121 silly lockFile 668f7b1f-ember-mongoose-0-0-6-package-tgz tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz
+122 silly lockFile 668f7b1f-ember-mongoose-0-0-6-package-tgz tar:///home/me/.npm/ember-mongoose/0.0.6/package.tgz
+123 verbose from cache /home/me/.npm/ember-mongoose/0.0.6/package/package.json
+124 verbose chmod /home/me/.npm/ember-mongoose/0.0.6/package.tgz 644
+125 verbose chown /home/me/.npm/ember-mongoose/0.0.6/package.tgz [ 1001, 1001 ]
+126 silly lockFile 3a52ce78- .
+127 silly lockFile 3a52ce78- .
+128 silly publish { name: 'ember-mongoose',
+128 silly publish   version: '0.0.6',
+128 silly publish   main: 'lib/server/index.js',
+128 silly publish   description: 'Mongoose ⇆ Ember-Data',
+128 silly publish   keywords: [ 'ember', 'mongoose' ],
+128 silly publish   dependencies: { batch: '*', express: '*', mongoose: '*' },
+128 silly publish   devDependencies:
+128 silly publish    { mocha: '*',
+128 silly publish      should: '*',
+128 silly publish      supertest: '*',
+128 silly publish      component: '*',
+128 silly publish      'mongoose-time': '*' },
+128 silly publish   license: 'MIT',
+128 silly publish   readme: 'Install\n---\n\n    $ npm install ember-mongoose\n    $ component install kelonye/ember-mongoose\n\nExample\n---\n\n  - [Blog](http://github.com/kelonye/blog)\n  - [WCMS](http://github.com/kelonye/wcms)\n  - [Pitchas](http://pitchas-kelonye.rhcloud.com)\n\nUsage\n---\n\n```\n\n// models.js\n\nexports.Post = schema = new mongoose.Schema(\n  {\n    title: String,\n    content: String\n  } , {\n    versionKey: false\n  }\n)\n\n// set schema permissions\n\nschema.methods.__isCreatable__ = function(req, cb){\n  cb(null, 403);\n}\nschema.methods.__isReadable__ = function(req, cb){\n  cb(null, true);\n}\nschema.methods.__isUpdatable__ = function(req, cb){\n  cb(null, 403);\n}\nschema.methods.__isRemovable__ = function(req, cb){\n  cb(null, 403);\n}\nexports.Post = mongo.model(\'Post\', schema);\n\n// apis.js\n\nvar embermongoose = require(\'ember-mongoose\')\nvar models = require(\'./models\');\nvar apis = embermongoose(models);\n\napis.Post.setPaths([\n    \'title\'\n  , \'content\'\n]);\n\nmodule.exports = apis.getURIS();\n\n// server.js\n\nvar express = require(\'express\')\n  , apis = require(\'./apis\');\nvar app = express();\napp.use(apis.getURIS());\napp.listen(3000);\n\n\n// client.js\n\nApp.Adapter = require(\'ember-mongoose\');\nApp.Store = DS.Store.extend({\n  adapter: \'App.Adapter\'\n});\n```\n\nTest\n---\n\n    $ make test',
+128 silly publish   readmeFilename: 'Readme.md',
+128 silly publish   _id: 'ember-mongoose@0.0.6',
+128 silly publish   dist: { shasum: '772dedef6367d1891bf8da7c51a3259a91333261' },
+128 silly publish   _from: '.' }
+129 verbose url raw ember-mongoose
+130 verbose url resolving [ 'https://registry.npmjs.org/', './ember-mongoose' ]
+131 verbose url resolved https://registry.npmjs.org/ember-mongoose
+132 info trying registry request attempt 1 at 21:41:48
+133 http PUT https://registry.npmjs.org/ember-mongoose
+134 http 409 https://registry.npmjs.org/ember-mongoose
+135 verbose url raw ember-mongoose
+136 verbose url resolving [ 'https://registry.npmjs.org/', './ember-mongoose' ]
+137 verbose url resolved https://registry.npmjs.org/ember-mongoose
+138 info trying registry request attempt 1 at 21:41:52
+139 http GET https://registry.npmjs.org/ember-mongoose
+140 http 200 https://registry.npmjs.org/ember-mongoose
+141 error publish fail Cannot publish over existing version.
+141 error publish fail Update the 'version' field in package.json and try again.
+141 error publish fail
+141 error publish fail If the previous version was published in error, see:
+141 error publish fail     npm help unpublish
+141 error publish fail
+141 error publish fail To automatically increment version numbers, see:
+141 error publish fail     npm help version
+142 error System Linux 3.9.6-200.fc18.x86_64
+143 error command "/home/me/.nvm/v0.10.12/bin/node" "/home/me/.nvm/v0.10.12/bin/npm" "publish"
+144 error cwd /home/me/Documents/src/kelonye/ember-mongoose
+145 error node -v v0.10.12
+146 error npm -v 1.2.32
+147 error code EPUBLISHCONFLICT
+148 verbose exit [ 1, true ]

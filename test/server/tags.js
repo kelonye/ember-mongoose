@@ -49,11 +49,15 @@ describe('tags', function() {
     it('should return matched tags', function(done) {
       request(app)
         .post('/tags')
-        .send({ q: {
-          _id: {
-            $in: [tag.id, tag.id]
+        .send(
+          {
+            query: {
+                q:{
+                _id: { $in: [tag.id, tag.id] }
+              }
+            }
           }
-        }})
+        )
         .expect(200)
         .end(function(err, res) {
           if (err) {

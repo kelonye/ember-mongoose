@@ -47,9 +47,15 @@ describe('posts', function() {
   describe('QUERY /', function() {
     it('should return matched posts', function(done) {
       request(app)
-        .post('/posts').send({ q: {
-          title: 'a'
-        }})
+        .post('/posts').send(
+          {
+            query: {
+                q:{
+                  title: 'a'
+                }
+            }
+          }
+        )
         .expect(200)
         .end(function(err, res) {
           if (err) throw err

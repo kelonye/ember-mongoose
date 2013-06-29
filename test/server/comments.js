@@ -80,9 +80,15 @@ describe('comments', function() {
     it('should return matched posts', function(done) {
       request(app)
         .post('/comments')
-        .send({ q: {
-          content: 'a'
-        }})
+        .send(
+          {
+            query: {
+                q:{
+                  content: 'a'
+                }
+            }
+          }
+        )
         .expect(200)
         .end(function(err, res) {
           if (err) done(err)
