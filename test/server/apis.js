@@ -20,7 +20,7 @@ describe('apis', function() {
     it('should apply (path, fn) plugin', function(done) {
       var app = express();
       var apis = embermongoose({});
-      apis.use('/', function(req, res){
+      apis.use(function(req, res){
         res.send('yeha');
       });
       app.use(apis.getURIS());
