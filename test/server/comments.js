@@ -20,7 +20,8 @@ describe('comments', function() {
     it('should return a list of comments', function(done) {
       request(app)
         .get('/comments')
-        .expect(200).end(function(err, res) {
+        .expect(200)
+        .end(function(err, res) {
           if (err) done(err)
           res.body.comments.length.should.equal(1);
           done();
@@ -34,7 +35,8 @@ describe('comments', function() {
           content: 'b',
           post_id: post.id
         }})
-        .expect(200).end(function(err, res) {
+        .expect(200)
+        .end(function(err, res) {
           if (err) done(err)
           res.body.comment.content.should.equal('b');
           res.body.comment.post_id.should.equal(post.id);
