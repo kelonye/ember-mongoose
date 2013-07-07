@@ -11,19 +11,19 @@ exports.setUp = function(done) {
     is_super_user: true
   });
   user.save(function(err, user) {
-    if (err) throw err
+    if (err) return done(err);
     global.post = new Post({
       title: 'a',
       content: 'a'
     });
     post.save(function(err, post) {
-      if (err) throw err
+      if (err) return done(err);
       global.tag = new Tag({
         name: 'a',
         post_id: post.id
       });
       tag.save(function(err, tag) {
-        if (err) throw err
+        if (err) return done(err);
         global.comment = new Comment({
           content: 'a',
           user_id: user.id,
@@ -37,11 +37,11 @@ exports.setUp = function(done) {
 
 exports.tearDown = function(done) {
   Post.find().remove().exec(function(err) {
-    if (err) throw err
+    if (err) return done(err);
     Tag.find().remove().exec(function(err) {
-      if (err) throw err
+      if (err) return done(err);
       Comment.find().remove().exec(function(err) {
-        if (err) throw err
+        if (err) return done(err);
         User.find().remove().exec(done);
       });
     });
