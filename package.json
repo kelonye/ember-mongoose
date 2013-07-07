@@ -16,8 +16,8 @@
     "mocha": "*",
     "should": "*",
     "supertest": "*",
-    "component": "*",
-    "mongoose-time": "*"
+    "mongoose-time": "*",
+    "component-hooks": "*"
   },
   "license": "MIT"
 }
