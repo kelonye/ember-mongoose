@@ -88,38 +88,14 @@ describe('Adapter', function() {
     person = null;
     people = null;
   });
-  describe('#findMany', function() {
-    it('makes a GET and returns matched items', function(done) {
-      people = store.findMany(Person, ['1', '2']);
-      expectUrl('/persons');
-      expectType('POST');
-      ajaxHash.success({
-        persons: [
-          {
-            _id: '1',
-            name: 'Yehuda'
-          }, {
-            _id: '2',
-            name: 'TJ'
-          }
-        ]
-      });
-      expect(people.get('length'), 2);
-      person = people.objectAt(0);
-      expect(person.get('id'), '1');
-      person = store.find(Person, 1);
-      expect(person.get('id'), '1');
-      done();
-    });
-  });
   describe('#findQuery', function() {
     it('makes a POST and returns matched items', function(done) {
       var name = 'Yehuda Katz';
       var data = {
-        c: {
+        conditions: {
           name: name
         },
-        s: {
+        options: {
           
         }
       };

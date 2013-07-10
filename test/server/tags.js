@@ -52,7 +52,7 @@ describe('tags', function() {
         .send(
           {
             query: {
-                q:{
+                conditions:{
                 _id: { $in: [tag.id, tag.id] }
               }
             }

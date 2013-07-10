@@ -50,7 +50,7 @@ describe('posts', function() {
         .post('/posts').send(
           {
             query: {
-                q:{
+                conditions:{
                   title: 'a'
                 }
             }

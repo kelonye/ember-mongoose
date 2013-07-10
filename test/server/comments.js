@@ -85,7 +85,7 @@ describe('comments', function() {
         .send(
           {
             query: {
-                q:{
+                conditions:{
                   content: 'a'
                 }
             }
