@@ -2,7 +2,7 @@
   * Module dependencies
   */
 
-var embermongoose = require('../../../');
+var embermongoose = require('../../');
 var models = require('./models');
 
 /**

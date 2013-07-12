@@ -22,7 +22,7 @@ describe('tags', function() {
         .get('/tags')
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.tags.length.should.equal(1);
           done();
         });
@@ -38,7 +38,7 @@ describe('tags', function() {
         }})
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.tag.name.should.equal('b');
           res.body.tag.post_id.should.equal(post.id);
           done();
@@ -74,7 +74,7 @@ describe('tags', function() {
         .get('/tags/' + tag.id)
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.tag._id.should.equal(tag.id);
           res.body.tag.name.should.equal('a');
           res.body.tag.post_id.should.equal(post.id);
@@ -91,9 +91,9 @@ describe('tags', function() {
         .expect(200)
         .end(function(err, res) {
           res.body.tag.name.should.equal('b');
-          if (err) throw err
+          if (err) return done(err);
           Tag.findById(tag.id, function(err, tag) {
-            if (err) throw err
+            if (err) return done(err);
             tag.name.should.equal('b');
             done();
           });
@@ -107,9 +107,9 @@ describe('tags', function() {
         .expect(200)
         .expect({})
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           Tag.findById(tag.id, function(err, _tag) {
-            if (err) throw err
+            if (err) return done(err);
             should.not.exist(_tag);
             done();
           });

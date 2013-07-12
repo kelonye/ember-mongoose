@@ -10,6 +10,7 @@ if (!global.mongo) global.mongo = require('./mongo')
 
 var schema = new mongoose.Schema(
   {
+      _id: String,
       name: String,
       is_super_user: Boolean
   }, {
@@ -26,6 +27,7 @@ exports.User = mongo.model('User', schema);
 
 var schema = new mongoose.Schema(
   {
+      _id: String,
       name: String,
       post_id: String
   }, {
@@ -46,6 +48,7 @@ exports.Tag = mongo.model('Tag', schema);
 
 schema = new mongoose.Schema(
   {
+      _id: String,
       content: String,
       post_id: String,
       user_id: String
@@ -70,6 +73,7 @@ exports.Comment = mongo.model('Comment', schema);
 
 schema = new mongoose.Schema(
   {
+      _id: String,
       title: String,
       content: String
   }, {

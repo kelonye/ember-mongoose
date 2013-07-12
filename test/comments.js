@@ -1,13 +1,13 @@
-var should = require('should')
-  , request = require('supertest')
-  , mongoose = require('mongoose')
-  , app = require('./support/')
-  , db = require('./support/db')
-  , models = require('./support/models')
-  , User = models.User
-  , Tag = models.Tag
-  , Post = models.Post
-  , Comment = models.Comment;
+var should = require('should');
+var request = require('supertest');
+var mongoose = require('mongoose');
+var app = require('./support/');
+var db = require('./support/db');
+var models = require('./support/models');
+var User = models.User;
+var Tag = models.Tag;
+var Post = models.Post;
+var Comment = models.Comment;
 
 describe('comments', function() {
   beforeEach(function(done) {
@@ -22,7 +22,7 @@ describe('comments', function() {
         .get('/comments')
         .expect(200)
         .end(function(err, res) {
-          if (err) done(err)
+          if (err) return done(err);
           res.body.comments.length.should.equal(1);
           done();
         });
@@ -37,7 +37,7 @@ describe('comments', function() {
         }})
         .expect(200)
         .end(function(err, res) {
-          if (err) done(err)
+          if (err) return done(err);
           res.body.comment.content.should.equal('b');
           res.body.comment.post_id.should.equal(post.id);
           res.body.comment.user_id.should.equal(user.id);
@@ -51,7 +51,7 @@ describe('comments', function() {
         .get('/comments/' + comment.id)
         .expect(200)
         .end(function(err, res) {
-          if (err) done(err)
+          if (err) return done(err);
           res.body.comment._id.should.equal(comment.id);
           res.body.comment.content.should.equal('a');
           res.body.comment.post_id.should.equal(post.id);
@@ -69,9 +69,9 @@ describe('comments', function() {
         .expect(200)
         .end(function(err, res) {
           res.body.comment.content.should.equal('b');
-          if (err) done(err)
+          if (err) return done(err);
           Comment.findById(comment.id, function(err, comment) {
-            if (err) done(err)
+            if (err) return done(err);
             comment.content.should.equal('b');
             done();
           });
@@ -93,7 +93,7 @@ describe('comments', function() {
         )
         .expect(200)
         .end(function(err, res) {
-          if (err) done(err)
+          if (err) return done(err);
           res.body.comments.length.should.equal(1);
           done();
         });
@@ -106,9 +106,9 @@ describe('comments', function() {
         .expect(200)
         .expect({})
         .end(function(err, res) {
-          if (err) done(err)
+          if (err) return done(err);
           Comment.findById(comment.id, function(err, _comment) {
-            if (err) done(err)
+            if (err) return done(err);
             should.not.exist(_comment);
             done();
           });

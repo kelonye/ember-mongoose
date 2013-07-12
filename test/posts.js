@@ -22,7 +22,7 @@ describe('posts', function() {
         .get('/posts')
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.posts.length.should.equal(1);
           done();
       });
@@ -37,7 +37,7 @@ describe('posts', function() {
         }})
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.post.title.should.equal('b');
           res.body.post.content.should.equal('b');
           done();
@@ -58,7 +58,7 @@ describe('posts', function() {
         )
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.posts.length.should.equal(1);
           done();
         });
@@ -70,7 +70,7 @@ describe('posts', function() {
         .get('/posts/' + post.id)
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           res.body.post._id.should.equal(post.id);
           res.body.post.title.should.equal('a');
           res.body.post.content.should.equal('a');
@@ -89,9 +89,9 @@ describe('posts', function() {
         .end(function(err, res) {
           res.body.post.title.should.equal('b');
           res.body.post.content.should.equal('b');
-          if (err) throw err
+          if (err) return done(err);
           Post.findById(post.id, function(err, post) {
-            if (err) throw err
+            if (err) return done(err);
             post.title.should.equal('b');
             post.content.should.equal('b');
             done();
@@ -106,15 +106,15 @@ describe('posts', function() {
         .expect(200)
         .expect({})
         .end(function(err, res) {
-          if (err) throw err
+          if (err) return done(err);
           Post.findById(post.id, function(err, post) {
-            if (err) throw err
+            if (err) return done(err);
             should.not.exist(post);
             Tag.findById(tag.id, function(err, tag) {
-              if (err) throw err
+              if (err) return done(err);
               should.not.exist(tag);
               Comment.findById(comment.id, function(err, comment) {
-                if (err) throw err;
+                if (err) return done(err);;
                 should.not.exist(comment);
                 done();
               });

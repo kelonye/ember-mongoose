@@ -1,4 +1,2 @@
 *.npm-debug.log
-public
-components
 node_modules

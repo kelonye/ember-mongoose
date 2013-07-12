@@ -1,5 +1,5 @@
-var express = require('express')
-  , mongo = require('./mongo');
+var express = require('express');
+var mongo = require('./mongo');
 
 global.mongo = mongo;
 
