@@ -23,24 +23,7 @@ describe('tags', function() {
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
-          res.body.tags.length.should.equal(1);
-          done();
-        });
-    });
-  });
-  describe('POST /', function() {
-    it('should create and return a tag', function(done) {
-      request(app)
-        .post('/tags')
-        .send({ tag: {
-          name: 'b',
-          post_id: post.id
-        }})
-        .expect(200)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.tag.name.should.equal('b');
-          res.body.tag.post_id.should.equal(post.id);
+          res.body.tags.length.should.equal(2);
           done();
         });
     });
@@ -64,6 +47,23 @@ describe('tags', function() {
             throw err;
           }
           res.body.tags.length.should.equal(1);
+          done();
+        });
+    });
+  });
+  describe('POST /', function() {
+    it('should create and return a tag', function(done) {
+      request(app)
+        .post('/tags')
+        .send({ tag: {
+          name: 'b',
+          post_id: post.id
+        }})
+        .expect(200)
+        .end(function(err, res) {
+          if (err) return done(err);
+          res.body.tag.name.should.equal('b');
+          res.body.tag.post_id.should.equal(post.id);
           done();
         });
     });

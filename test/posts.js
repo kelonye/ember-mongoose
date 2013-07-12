@@ -23,25 +23,9 @@ describe('posts', function() {
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
-          res.body.posts.length.should.equal(1);
+          res.body.posts.length.should.equal(2);
           done();
       });
-    });
-  });
-  describe('POST /', function() {
-    it('should create and return a post', function(done) {
-      request(app)
-        .post('/posts').send({ post: {
-            title: 'b',
-            content: 'b'
-        }})
-        .expect(200)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.post.title.should.equal('b');
-          res.body.post.content.should.equal('b');
-          done();
-        });
     });
   });
   describe('QUERY /', function() {
@@ -60,6 +44,22 @@ describe('posts', function() {
         .end(function(err, res) {
           if (err) return done(err);
           res.body.posts.length.should.equal(1);
+          done();
+        });
+    });
+  });
+  describe('POST /', function() {
+    it('should create and return a post', function(done) {
+      request(app)
+        .post('/posts').send({ post: {
+            title: 'b',
+            content: 'b'
+        }})
+        .expect(200)
+        .end(function(err, res) {
+          if (err) return done(err);
+          res.body.post.title.should.equal('b');
+          res.body.post.content.should.equal('b');
           done();
         });
     });

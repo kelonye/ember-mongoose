@@ -18,14 +18,13 @@ exports.setUp = function(fn) {
     user.save(done);
   });
 
-  // batch.push(function(done){
-  //   user = new User({
-  //     _id: '2',
-  //     name: 'TJ',
-  //     is_super_user: true
-  //   });
-  //   user.save(done);    
-  // });
+  batch.push(function(done){
+    new User({
+      _id: '2',
+      name: 'TJ',
+      is_super_user: true
+    }).save(done);    
+  });
 
   batch.push(function(done){
     global.post = new Post({
@@ -36,14 +35,13 @@ exports.setUp = function(fn) {
     post.save(done);    
   });
 
-  // batch.push(function(done){
-  //   post = new Post({
-  //     _id: '2',
-  //     title: 'a',
-  //     content: 'a'
-  //   });
-  //   post.save(done);    
-  // });
+  batch.push(function(done){
+    new Post({
+      _id: '2',
+      title: 'b',
+      content: 'b'
+    }).save(done);    
+  });
 
   batch.push(function(done){
     global.tag = new Tag({
@@ -52,6 +50,14 @@ exports.setUp = function(fn) {
       post_id: '1'
     });
     tag.save(done);
+  });
+
+  batch.push(function(done){
+    new Tag({
+      _id: '2', 
+      name: 'b',
+      post_id: '2'
+    }).save(done);
   });
 
   batch.push(function(done){
@@ -64,19 +70,36 @@ exports.setUp = function(fn) {
     comment.save(done);
   });
 
+  batch.push(function(done){
+    new Comment({
+      _id: '2',
+      content: 'b',
+      user_id: '2',
+      post_id: '2'
+    }).save(done);
+  });
+
   batch.end(fn);
 
 };
 
-exports.tearDown = function(done) {
-  Post.find().remove().exec(function(err) {
-    if (err) return done(err);
-    Tag.find().remove().exec(function(err) {
-      if (err) return done(err);
-      Comment.find().remove().exec(function(err) {
-        if (err) return done(err);
-        User.find().remove().exec(done);
-      });
-    });
+exports.tearDown = function(fn) {
+
+  var batch = new Batch;
+
+  batch.push(function(done){
+    Post.remove(done);
   });
+  batch.push(function(done){
+    Tag.remove(done);
+  });
+  batch.push(function(done){
+    User.remove(done);
+  });
+  batch.push(function(done){
+    Comment.remove(done);
+  });
+
+  batch.end(fn);
+
 };

@@ -23,6 +23,27 @@ describe('comments', function() {
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
+          res.body.comments.length.should.equal(2);
+          done();
+        });
+    });
+  });
+  describe('QUERY /', function() {
+    it('should return matched posts', function(done) {
+      request(app)
+        .post('/comments')
+        .send(
+          {
+            query: {
+                conditions:{
+                  content: 'a'
+                }
+            }
+          }
+        )
+        .expect(200)
+        .end(function(err, res) {
+          if (err) return done(err);
           res.body.comments.length.should.equal(1);
           done();
         });
@@ -75,27 +96,6 @@ describe('comments', function() {
             comment.content.should.equal('b');
             done();
           });
-        });
-    });
-  });
-  describe('QUERY /', function() {
-    it('should return matched posts', function(done) {
-      request(app)
-        .post('/comments')
-        .send(
-          {
-            query: {
-                conditions:{
-                  content: 'a'
-                }
-            }
-          }
-        )
-        .expect(200)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.comments.length.should.equal(1);
-          done();
         });
     });
   });
