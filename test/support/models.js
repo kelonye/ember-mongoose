@@ -1,8 +1,8 @@
-var mongoose = require('mongoose')
-  , timestamps = require('mongoose-time')
-  , ensure = require('./ensure');
+var mongoose = require('mongoose');
+var timestamps = require('mongoose-time');
+var ensure = require('./ensure');
 
-if (!global.mongo) global.mongo = require('./mongo')
+if (!global.mongo) global.mongo = require('./mongo');
 
 /**
   * User
@@ -35,10 +35,10 @@ var schema = new mongoose.Schema(
   }
 );
 schema.plugin(timestamps());
-schema.methods.__isCreatable__ = ensure.user;
+schema.methods.__isCreatable__ = ensure.belongs_to_user;
 schema.methods.__isReadable__ = ensure.any;
-schema.methods.__isUpdatable__ = ensure.user;
-schema.methods.__isRemovable__ = ensure.user;
+schema.methods.__isUpdatable__ = ensure.belongs_to_user;
+schema.methods.__isRemovable__ = ensure.belongs_to_user;
 exports.Tag = mongo.model('Tag', schema);
 
 
@@ -59,11 +59,11 @@ schema = new mongoose.Schema(
 schema.plugin(timestamps());
 schema.methods.__isCreatable__ = function(req, cb) {
   this.user_id = req.user._id;
-  return ensure.user(req, cb);
+  return ensure.belongs_to_user(req, cb);
 };
 schema.methods.__isReadable__ = ensure.any;
-schema.methods.__isUpdatable__ = ensure.user;
-schema.methods.__isRemovable__ = ensure.user;
+schema.methods.__isUpdatable__ = ensure.belongs_to_user;
+schema.methods.__isRemovable__ = ensure.belongs_to_user;
 exports.Comment = mongo.model('Comment', schema);
 
 
@@ -81,8 +81,8 @@ schema = new mongoose.Schema(
   }
 );
 schema.plugin(timestamps());
-schema.methods.__isCreatable__ = ensure.superuser;
+schema.methods.__isCreatable__ = ensure.user_is_super;
 schema.methods.__isReadable__ = ensure.any;
-schema.methods.__isUpdatable__ = ensure.superuser;
-schema.methods.__isRemovable__ = ensure.superuser;
+schema.methods.__isUpdatable__ = ensure.user_is_super;
+schema.methods.__isRemovable__ = ensure.user_is_super;
 exports.Post = mongo.model('Post', schema);

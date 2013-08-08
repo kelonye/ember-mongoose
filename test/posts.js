@@ -1,13 +1,13 @@
-var should = require('should')
-  , request = require('supertest')
-  , mongoose = require('mongoose')
-  , app = require('./support/')
-  , db = require('./support/db')
-  , models = require('./support/models')
-  , User = models.User
-  , Tag = models.Tag
-  , Post = models.Post
-  , Comment = models.Comment;
+var should = require('should');
+var request = require('supertest');
+var mongoose = require('mongoose');
+var app = require('./support/');
+var db = require('./support/db');
+var models = require('./support/models');
+var User = models.User;
+var Tag = models.Tag;
+var Post = models.Post;
+var Comment = models.Comment;
 
 describe('posts', function() {
   beforeEach(function(done) {
