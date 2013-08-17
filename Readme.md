@@ -4,13 +4,7 @@ Install
     $ npm install ember-mongoose
     $ component install kelonye/ember-mongoose
 
-Example
----
-
-  - [Blog](http://github.com/kelonye/blog)
-  - [WCMS](http://github.com/kelonye/wcms)
-  - [Pitchas](http://pitchas-kelonye.rhcloud.com)
-
+<!--
 Usage
 ---
 
@@ -18,50 +12,55 @@ Usage
 
 // models.js
 
-exports.Post = schema = new mongoose.Schema(
+schema = new mongoose.Schema(
   {
     title: String,
     content: String
   } , {
     versionKey: false
   }
-)
-
-// set schema permissions
-
-schema.methods.__isCreatable__ = function(req, cb){
-  cb(null, 403);
-}
-schema.methods.__isReadable__ = function(req, cb){
-  cb(null, true);
-}
-schema.methods.__isUpdatable__ = function(req, cb){
-  cb(null, 403);
-}
-schema.methods.__isRemovable__ = function(req, cb){
-  cb(null, 403);
-}
+);
 exports.Post = mongo.model('Post', schema);
 
 // apis.js
 
-var embermongoose = require('ember-mongoose')
-var models = require('./models');
-var apis = embermongoose(models);
+var Api = require('ember-mongoose');
 
-apis.Post.setPaths([
-    'title'
-  , 'content'
-]);
+var api = new Api();
 
-module.exports = apis.getURIS();
+// name
+
+api.name = 'Post';
+
+// fields
+
+api.fields = [
+  'title',
+  'content'
+]
+
+// set api permissions
+
+api.perms.__isCreatable__ = function(req, done){
+  done(null, 403);
+}
+api.perms.__isReadable__ = function(req, done){
+  done(null, true);
+}
+api.perms.__isUpdatable__ = function(req, done){
+  done(null, 403);
+}
+api.perms.__isRemovable__ = function(req, done){
+  done(null, 403);
+}
+
+var app = module.exports = express();
+app.use(api);
 
 // server.js
 
-var express = require('express')
-  , apis = require('./apis');
 var app = express();
-app.use(apis.getURIS());
+app.use(require('./apis'));
 app.listen(3000);
 
 
@@ -72,6 +71,7 @@ App.Store = DS.Store.extend({
   adapter: 'App.Adapter'
 });
 ```
+-->
 
 Test
 ---
