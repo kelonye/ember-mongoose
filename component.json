@@ -1,10 +1,10 @@
 {
   "name": "ember-mongoose",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "lib/client/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "dependencies": {
-    "kelonye/ember-data": "*"
+    "kelonye/ember-data": "0.0.13"
   },
   "development": {
     "timoxley/assert": "*"
