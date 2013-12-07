@@ -4,10 +4,4 @@ test: node_modules
 node_modules:
 	@npm install
 
-publish:
-	@npm publish
-
-clean:
-	@rm -rf public
-
-.PHONY: clean test
+.PHONY: test
