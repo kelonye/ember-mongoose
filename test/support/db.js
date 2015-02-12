@@ -7,11 +7,15 @@ var Comment = models.Comment;
 
 exports.setUp = function(fn) {
 
+  var user2;
+  var post2;
+
   var batch = new Batch;
+
+  batch.concurrency(1);
 
   batch.push(function(done){
     global.user = new User({
-      _id: '1',
       name: 'TJ',
       is_super_user: true
     });
@@ -19,16 +23,15 @@ exports.setUp = function(fn) {
   });
 
   batch.push(function(done){
-    new User({
-      _id: '2',
+    user2 = new User({
       name: 'TJ',
       is_super_user: true
-    }).save(done);    
+    });
+    user2.save(done);    
   });
 
   batch.push(function(done){
     global.post = new Post({
-      _id: '1',
       title: 'a',
       content: 'a'
     });
@@ -36,46 +39,42 @@ exports.setUp = function(fn) {
   });
 
   batch.push(function(done){
-    new Post({
-      _id: '2',
+    post2 = new Post({
       title: 'b',
       content: 'b'
-    }).save(done);    
+    });
+    post2.save(done);    
   });
 
   batch.push(function(done){
     global.tag = new Tag({
-      _id: '1', 
       name: 'a',
-      post_id: '1'
+      post_id: post.id,
     });
     tag.save(done);
   });
 
   batch.push(function(done){
     new Tag({
-      _id: '2', 
       name: 'b',
-      post_id: '2'
+      post_id: post2.id,
     }).save(done);
   });
 
   batch.push(function(done){
     global.comment = new Comment({
-      _id: '1',
       content: 'a',
-      user_id: '1',
-      post_id: '1'
+      user_id: user.id,
+      post_id: post.id,
     });
     comment.save(done);
   });
 
   batch.push(function(done){
     new Comment({
-      _id: '2',
       content: 'b',
-      user_id: '2',
-      post_id: '2'
+      user_id: user2.id,
+      post_id: post2.id,
     }).save(done);
   });
 

@@ -10,7 +10,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(require('./session'));
 app.use(require('./strategy'));
-app.use(require('./apis'));
+require('./apis')(app);
 
 if (!module.parent){
   app.listen(3000);
