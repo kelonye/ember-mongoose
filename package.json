@@ -8,7 +8,7 @@
     "mongoose"
   ],
   "dependencies": {
-    "batch": "0.5.0",
+    "batch": "^0.5.2",
     "component-clone": "^0.2.2",
     "mongoose": "^3.8.23"
   },
