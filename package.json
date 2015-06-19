@@ -1,6 +1,6 @@
 {
   "name": "ember-mongoose",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "lib/server/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "keywords": [
@@ -10,7 +10,7 @@
   "dependencies": {
     "batch": "^0.5.2",
     "component-clone": "^0.2.2",
-    "mongoose": "^3.8.23"
+    "mongoose": "^4.0.5"
   },
   "devDependencies": {
     "mocha": "1.14.0",

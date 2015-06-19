@@ -35,3 +35,8 @@ this
   });
 
 ```
+
+Similar
+---
+
+- [ember-orm](https://github.com/kelonye/ember-orm)
