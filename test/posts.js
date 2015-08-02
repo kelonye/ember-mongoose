@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var app = require('./support/');
 var db = require('./support/db');
 var models = require('./support/models');
+var Batch = require('batch');
 var User = models.User;
 var Tag = models.Tag;
 var Post = models.Post;
@@ -34,7 +35,7 @@ describe('posts', function() {
         .post('/posts').send(
           {
             query: {
-                conditions:{
+                conditions: {
                   title: 'a'
                 }
             }
@@ -46,6 +47,58 @@ describe('posts', function() {
           res.body.posts.length.should.equal(1);
           done();
         });
+    });
+  });
+  describe('COUNT /', function() {
+    it('should return no of posts', function(done) {
+      
+      var batch = new Batch;
+
+      batch.push(function(cb){
+        request(app)
+          .post('/posts').send(
+            {
+              query: {
+                conditions: {
+                },
+                options: {
+                  count: true
+                }
+              },
+            }
+          )
+          .expect(200)
+          .end(function(err, res) {
+            if (err) return cb(err);
+            res.body.count.should.equal(2);
+            cb();
+          });
+      });
+
+      batch.push(function(cb){
+        request(app)
+          .post('/posts').send(
+            {
+              query: {
+                conditions: {
+                  title: 'a'
+                },
+                options: {
+                  count: true
+                }
+              },
+            }
+          )
+          .expect(200)
+          .end(function(err, res) {
+            if (err) return cb(err);
+            res.body.count.should.equal(1);
+            cb();
+          });
+      });
+
+      batch.end(done);
+
     });
   });
   describe('POST /', function() {
