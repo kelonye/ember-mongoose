@@ -1,6 +1,6 @@
 {
   "name": "ember-mongoose",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "main": "lib/client/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "dependencies": {
