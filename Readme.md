@@ -186,8 +186,8 @@ var query =
 this
   .store
   .find('post', query)
-  .then(function(data){
-    console.log(data.count);
+  .then(function(res){
+    console.log(res.meta.count);
   }, funntion(res){
     console.log(res.responseText);
   });
