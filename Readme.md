@@ -101,7 +101,11 @@ app.listen(3000);
 With this, you can now access the `Post` resource e.g.:
 
     $ curl http://localhost:3000/posts
-    $ curl -H "Content-Type: application/json" -X POST -d '{"title":"title","content":""}' http://localhost:3000/posts
+    $ curl
+      -H "Content-Type: application/json"
+      -X POST
+      -d '"post": {{"title":"title","content":""}}'
+      http://localhost:3000/posts
 
 ### Client
 
@@ -116,7 +120,7 @@ App.ApplicationAdapter = require('ember-mongoose');
 or alternatively, use `lib/client/index.js` if not.
 
 
-Finally, you can then use the `Ember-Data` store to perfom api calls, e.g.:
+Finally, you can then use the `Ember-Data` store to perfom API calls, e.g.:
 
 ```js
 
@@ -132,8 +136,8 @@ var query =
     title: 'title'
   },
   options: {
-    skip: 0, // starting row
-    limit: 10, // ending row
+    skip: 0, // start row
+    limit: 10, // end row
     sort: {
       created_at: -1 // order by latest
     }
@@ -160,8 +164,8 @@ this
   .store
   .createRecord('post', record)
   .save()
-  .then(function(posts){
-    console.log(posts);
+  .then(function(post){
+    console.log(post);
   }, funntion(res){
     console.log(res.responseText);
   });
@@ -170,7 +174,7 @@ this
 
 #### Get query count
 
-To only retrieve the number of documents in a query, passin the count option:
+To only retrieve the number of documents in a query, passin the `count` option as:
 
 ```js
 
