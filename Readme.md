@@ -101,11 +101,24 @@ app.listen(3000);
 With this, you can now access the `Post` resource e.g.:
 
     $ curl http://localhost:3000/posts
+    
     $ curl
       -H "Content-Type: application/json"
       -X POST
       -d '"post": {{"title":"title","content":""}}'
       http://localhost:3000/posts
+    $ curl http://localhost:3000/posts/1
+
+    $ curl
+      -H "Content-Type: application/json"
+      -X PUT
+      -d '"post": {{"title":"title","content":""}}'
+      http://localhost:3000/posts/1
+
+    $ curl
+      -H "Content-Type: application/json"
+      -X DELETE
+      http://localhost:3000/posts/1
 
 ### Client
 
