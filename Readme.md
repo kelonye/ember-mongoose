@@ -107,6 +107,7 @@ With this, you can now access the `Post` resource e.g.:
       -X POST
       -d '"post": {{"title":"title","content":""}}'
       http://localhost:3000/posts
+    
     $ curl http://localhost:3000/posts/1
 
     $ curl
@@ -115,10 +116,7 @@ With this, you can now access the `Post` resource e.g.:
       -d '"post": {{"title":"title","content":""}}'
       http://localhost:3000/posts/1
 
-    $ curl
-      -H "Content-Type: application/json"
-      -X DELETE
-      http://localhost:3000/posts/1
+    $ curl -X DELETE http://localhost:3000/posts/1
 
 ### Client
 
