@@ -1,14 +1,21 @@
+/**
+ * Module dependencies.
+ */
+var Batch = require('batch');
 var should = require('should');
 var request = require('supertest');
 var mongoose = require('mongoose');
-var app = require('./support/');
-var db = require('./support/db');
-var models = require('./support/models');
-var Batch = require('batch');
+
+var config = require('./support/config');
+var models = config.models;
 var User = models.User;
 var Tag = models.Tag;
 var Post = models.Post;
 var Comment = models.Comment;
+
+var app = require('./support/');
+var db = require('./support/db');
+
 
 describe('posts', function() {
   beforeEach(function(done) {
@@ -70,7 +77,7 @@ describe('posts', function() {
           .expect(200)
           .end(function(err, res) {
             if (err) return cb(err);
-            res.body.count.should.equal(2);
+            res.body.meta.total.should.equal(2);
             cb();
           });
       });
@@ -92,7 +99,7 @@ describe('posts', function() {
           .expect(200)
           .end(function(err, res) {
             if (err) return cb(err);
-            res.body.count.should.equal(1);
+            res.body.meta.total.should.equal(1);
             cb();
           });
       });
@@ -105,8 +112,8 @@ describe('posts', function() {
     it('should create and return a post', function(done) {
       request(app)
         .post('/posts').send({ post: {
-            title: 'b',
-            content: 'b'
+          title: 'b',
+          content: 'b'
         }})
         .expect(200)
         .end(function(err, res) {
@@ -160,19 +167,21 @@ describe('posts', function() {
         .expect({})
         .end(function(err, res) {
           if (err) return done(err);
-          Post.findById(post.id, function(err, post) {
-            if (err) return done(err);
-            should.not.exist(post);
-            Tag.findById(tag.id, function(err, tag) {
-              if (err) return done(err);
-              should.not.exist(tag);
-              Comment.findById(comment.id, function(err, comment) {
-                if (err) return done(err);;
-                should.not.exist(comment);
-                done();
-              });
-            });
-          });
+          done();
+          // should remove orphan entities yourself
+          // Post.findById(post.id, function(err, post) {
+          //   if (err) return done(err);
+          //   should.not.exist(post);
+          //   Tag.findById(tag.id, function(err, tag) {
+          //     if (err) return done(err);
+          //     should.not.exist(tag);
+          //     Comment.findById(comment.id, function(err, comment) {
+          //       if (err) return done(err);;
+          //       should.not.exist(comment);
+          //       done();
+          //     });
+          //   });
+          // });
       });
     });
   });

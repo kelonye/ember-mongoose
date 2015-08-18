@@ -1,13 +1,21 @@
+/**
+ * Module dependencies.
+ */
+var Batch = require('batch');
 var should = require('should');
 var request = require('supertest');
 var mongoose = require('mongoose');
-var app = require('./support/');
-var db = require('./support/db');
-var models = require('./support/models');
+
+var config = require('./support/config');
+var models = config.models;
 var User = models.User;
 var Tag = models.Tag;
 var Post = models.Post;
 var Comment = models.Comment;
+
+var app = require('./support/');
+var db = require('./support/db');
+
 
 describe('comments', function() {
   beforeEach(function(done) {

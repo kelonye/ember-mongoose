@@ -1,9 +1,15 @@
+/**
+ * Module dependencies.
+ */
 var Batch = require('batch');
-var models = require('./models');
+
+var config = require('./config');
+var models = config.models;
 var User = models.User;
 var Tag = models.Tag;
 var Post = models.Post;
 var Comment = models.Comment;
+
 
 exports.setUp = function(fn) {
 

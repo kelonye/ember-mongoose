@@ -1,18 +1,31 @@
+/**
+  * Module dependencies.
+  */
+var config = require('./config');
 var express = require('express');
-var mongo = require('./mongo');
+var debug = require('debug')('app:web');
 
-global.mongo = mongo;
 
-app = module.exports = express();
+// app
+
+var app = module.exports = express();
+
+// settings
+
 app.use(express.favicon());
 app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(require('./session'));
-app.use(require('./strategy'));
-require('./apis')(app);
+app.use(require('./auth/passport'));
+
+// apis
+
+config.apis.discover(app);
+
+// bind
 
 if (!module.parent){
-  app.listen(3000);
-  console.log('http://dev:3000');
+  app.listen(config.port);
+  debug('listening on port '+config.port);
 }
