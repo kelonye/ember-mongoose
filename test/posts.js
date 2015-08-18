@@ -137,6 +137,16 @@ describe('posts', function() {
           done();
         });
     });
+    it('should return a custom field in payload', function(done) {
+      request(app)
+        .get('/posts/' + post.id)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) return done(err);
+          res.body.post.no_of_tags.should.equal('NO_OF_TAGS');
+          done();
+        });
+    });
   });
   describe('PUT /:id', function() {
     it('should update and return a post', function(done) {
