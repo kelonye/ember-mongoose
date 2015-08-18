@@ -15,9 +15,9 @@ To get started, suppose you have a model, `Post`:
 
 ```js
 
-// server/models.js
+// server/models/Post.js
 
-var schema = new mongoose.Schema(
+module.exports = new mongoose.Schema(
   {
     title: String,
     content: String
@@ -25,23 +25,15 @@ var schema = new mongoose.Schema(
     versionKey: false
   }
 );
-exports.Post = mongo.model('Post', schema);
 
 ```
 
 To expose this model, via an API, first define the `CRUD` auth hooks as:
 
 ```js
-var schema = new mongoose.Schema(
-  {
-    title: String,
-    content: String
-  }, {
-    versionKey: false
-  }
-);
+// server/api_hooks/pre/Post.js
 
-schema.methods.__isCreatable__ = function(req, next){
+exports.create = function(req, next){
   
   var err;
   
@@ -56,43 +48,52 @@ schema.methods.__isCreatable__ = function(req, next){
 
 };
 
-schema.methods.__isReadable__ = function(req, next){
+exports.read = function(req, next){
   next();
 };
 
-schema.methods.__isUpdatable__ = function (req, next){ 
+exports.update = function (req, next){ 
   var err = new Error('not allowed to access this resource');
   err.status = 403;
   next(err);
 };
 
-schema.methods.__isRemovable__ = function (req, next){ 
+exports.remove = function (req, next){ 
   var err = new Error('not allowed to access this resource');
   err.status = 403;
   next(err);
 };
 
-exports.Post = mongo.model('Post', schema);
 ```
 
-Then, build and mount the API to your Express app:
+You also need to specify the fields to expose as:
 
 ```js
+// server/api_fields/Post.js
 
-var em = require('ember-mongoose');
-var express = require('express');
-var models = require('/path/to/models.js');
-
-var app = express();
-
-var api = em(app, models);
-
-api.Post.setPaths([ // set model fields to expose
+module.exports = [
   'title',
   'content',
-]);
+];
 
-api.create();
+```
+
+Finally, build and mount the API to your Express app:
+
+```js
+var join = require('path').join;
+var express = require('express');
+var db = require('mongoose').createConnection('mongodb://localhost/test');
+var em = require('ember-mongoose');
+var app = express();
+
+// build api
+
+em()
+  .models(db, join(__dirname, 'server/models'))
+  .fields(join(__dirname, 'server/api_fields'))
+  .hooks(join(__dirname, 'server/api_hooks'));
+  .discover(app);
 
 app.listen(3000);
 
