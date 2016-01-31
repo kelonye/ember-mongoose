@@ -1,6 +1,6 @@
 {
   "name": "ember-mongoose",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "lib/server/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "keywords": [
@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "batch": "^0.5.2",
+    "camelcase": "^2.1.0",
     "component-clone": "^0.2.2",
     "debug": "^2.2.0",
     "decamelize": "^1.1.2",
