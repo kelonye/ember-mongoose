@@ -1,20 +1,19 @@
 /**
  * Module dependencies.
  */
+var db = require('./support/server/db');
 var Batch = require('batch');
 var should = require('should');
 var request = require('supertest');
 var mongoose = require('mongoose');
 
-var config = require('./support/config');
 var models = config.models;
 var User = models.User;
 var Tag = models.Tag;
 var Post = models.Post;
 var Comment = models.Comment;
 
-var app = require('./support/');
-var db = require('./support/db');
+var app = require('./support/server/');
 
 
 describe('posts', function() {
@@ -39,15 +38,11 @@ describe('posts', function() {
   describe('QUERY /', function() {
     it('should return matched posts', function(done) {
       request(app)
-        .post('/posts').send(
-          {
-            query: {
-                conditions: {
-                  title: 'a'
-                }
-            }
+        .get('/posts?query='+JSON.stringify({
+          conditions:{
+            title: 'a'
           }
-        )
+        }))
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
@@ -63,17 +58,13 @@ describe('posts', function() {
 
       batch.push(function(cb){
         request(app)
-          .post('/posts').send(
-            {
-              query: {
-                conditions: {
-                },
-                options: {
-                  count: true
-                }
-              },
+          .get('/posts?query='+JSON.stringify({
+            conditions: {
+            },
+            options: {
+              count: true
             }
-          )
+          }))
           .expect(200)
           .end(function(err, res) {
             if (err) return cb(err);
@@ -84,18 +75,14 @@ describe('posts', function() {
 
       batch.push(function(cb){
         request(app)
-          .post('/posts').send(
-            {
-              query: {
-                conditions: {
-                  title: 'a'
-                },
-                options: {
-                  count: true
-                }
-              },
+          .get('/posts?query='+JSON.stringify({
+            conditions: {
+              title: 'a'
+            },
+            options: {
+              count: true
             }
-          )
+          }))
           .expect(200)
           .end(function(err, res) {
             if (err) return cb(err);

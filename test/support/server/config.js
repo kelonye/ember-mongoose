@@ -1,9 +1,9 @@
 /**
  * Module dependencies.
  */
-var apis = require('../../')();
+var apis = require('../../../')();
 var join = require('path').join;
-var config = {};
+global.config = {};
 
 
 // port

@@ -1,20 +1,19 @@
 /**
  * Module dependencies.
  */
+var db = require('./support/server/db');
 var Batch = require('batch');
 var should = require('should');
 var request = require('supertest');
 var mongoose = require('mongoose');
 
-var config = require('./support/config');
 var models = config.models;
 var User = models.User;
 var Tag = models.Tag;
 var Post = models.Post;
 var Comment = models.Comment;
 
-var app = require('./support/');
-var db = require('./support/db');
+var app = require('./support/server/');
 
 
 describe('tags', function() {
@@ -39,16 +38,11 @@ describe('tags', function() {
   describe('QUERY /', function() {
     it('should return matched tags', function(done) {
       request(app)
-        .post('/tags')
-        .send(
-          {
-            query: {
-                conditions:{
-                _id: { $in: [tag.id, tag.id] }
-              }
-            }
+        .get('/tags?query='+JSON.stringify({
+          conditions:{
+            _id: { $in: [tag.id, tag.id] }
           }
-        )
+        }))
         .expect(200)
         .end(function(err, res) {
           if (err) {

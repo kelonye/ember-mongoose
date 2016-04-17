@@ -1,9 +1,9 @@
 /**
  * Module dependencies.
  */
-var Batch = require('batch');
+require('./config');
 
-var config = require('./config');
+var Batch = require('batch');
 var models = config.models;
 var User = models.User;
 var Tag = models.Tag;
@@ -20,6 +20,8 @@ exports.setUp = function(fn) {
 
   batch.concurrency(1);
 
+  batch.push(tearDown);
+  
   batch.push(function(done){
     global.user = new User({
       name: 'TJ',
@@ -88,23 +90,19 @@ exports.setUp = function(fn) {
 
 };
 
-exports.tearDown = function(fn) {
+var tearDown = exports.tearDown = function(next) {
 
   var batch = new Batch;
 
-  batch.push(function(done){
-    Post.remove(done);
-  });
-  batch.push(function(done){
-    Tag.remove(done);
-  });
-  batch.push(function(done){
-    User.remove(done);
-  });
-  batch.push(function(done){
-    Comment.remove(done);
-  });
+  batch.concurrency(1);
 
-  batch.end(fn);
+  for (var k in config.models){
+    (function(v){
+      var model = config.models[v];
+      batch.push(model.remove.bind(model));
+    }(k));
+  }
+
+  batch.end(next);
 
 };

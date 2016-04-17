@@ -4,7 +4,7 @@
   "main": "lib/client/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "dependencies": {
-    "kelonye/ember-data": "1.0.0-beta.14.1"
+    "kelonye/ember-data": "2.5.0"
   },
   "development": {
     "timoxley/assert": "*"

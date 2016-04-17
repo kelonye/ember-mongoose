@@ -1,0 +1,15 @@
+{
+  "name": "posts",
+  "scripts": [
+    "index.js",
+
+    "routes/index.js",
+    "routes/posts.js",
+
+    "templates/index.js"
+  ],
+  "jhbs": [
+    "templates/posts",
+    "templates/posts-index"
+  ]
+}

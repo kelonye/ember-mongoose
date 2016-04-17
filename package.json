@@ -11,6 +11,7 @@
     "batch": "^0.5.2",
     "camelcase": "^2.1.0",
     "component-clone": "^0.2.2",
+    "component-hooks": "^0.4.0",
     "debug": "^2.2.0",
     "decamelize": "^1.1.2",
     "mongoose": "^4.1.3",

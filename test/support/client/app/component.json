@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "dependencies": {
+    "kelonye/ember-mongoose": "*"
+  },
+  "scripts": [
+    "index.js",
+
+    "models/index.js",
+    "models/post.js",
+    
+    "routes/index.js",
+    "routes/application-index.js",
+
+    "templates/index.js"
+  ],
+  "jhbs": [
+    "templates/application"
+  ],
+  "local": [
+    "posts"
+  ],
+  "paths": [
+    ".",
+    ".."
+  ]
+}
