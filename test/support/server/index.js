@@ -40,3 +40,17 @@ app.get('/', function(req, res, next){
     });
 
 });
+
+// 404
+
+app.use(function(req, res, next){
+  var err = new Error('404');
+  err.status = 404;
+  return next(err);
+});
+
+// error
+
+app.use(function(err, req, res, next){
+  res.status(err.status || 500).send(err.message);
+});

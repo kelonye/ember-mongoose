@@ -1,9 +1,9 @@
 
 
-exports.read = function(payload, done){
+exports.read = function(req, payload, done){
 
   payload.no_of_tags = 'NO_OF_TAGS';
 
-  done();
+  done(null, payload);
 
 };

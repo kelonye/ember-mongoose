@@ -24,31 +24,23 @@ describe('comments', function() {
     db.tearDown(done);
   });
   describe('GET /', function() {
-    it('should return a list of comments', function(done) {
+    it('should fail since not allowed', function(done) {
       request(app)
         .get('/comments')
-        .expect(200)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.comments.length.should.equal(2);
-          done();
-        });
+        .expect(403)
+        .end(done);
     });
   });
   describe('QUERY /', function() {
-    it('should return matched posts', function(done) {
+    it('should fail since not allowed', function(done) {
       request(app)
         .get('/comments?query='+JSON.stringify({
           conditions:{
             content: 'a'
           }
         }))
-        .expect(200)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.comments.length.should.equal(1);
-          done();
-        });
+        .expect(403)
+        .end(done);
     });
   });
   describe('POST /', function() {

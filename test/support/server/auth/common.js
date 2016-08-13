@@ -7,6 +7,12 @@ exports.any = function(req, done) {
   done();
 };
 
+exports.none = function(req, done) {
+  var err = new Error('403');
+  err.status = 403;
+  done(err);
+};
+
 exports.user = function(req, done) {
   if (!req.isAuthenticated()) {
     return done(403);
@@ -59,4 +65,3 @@ exports.belongs_to_user = function(req, done) {
   batch.end(done);
 
 };
-

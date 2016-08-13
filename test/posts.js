@@ -53,7 +53,7 @@ describe('posts', function() {
   });
   describe('COUNT /', function() {
     it('should return no of posts', function(done) {
-      
+
       var batch = new Batch;
 
       batch.push(function(cb){
@@ -130,7 +130,7 @@ describe('posts', function() {
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
-          res.body.post.no_of_tags.should.equal('NO_OF_TAGS');
+          res.body.no_of_tags.should.equal('NO_OF_TAGS');
           done();
         });
     });
