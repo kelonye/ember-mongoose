@@ -1,6 +1,6 @@
 {
   "name": "ember-mongoose",
-  "version": "2.5.1",
+  "version": "2.11.0",
   "main": "lib/server/index.js",
   "description": "Mongoose ⇆ Ember-Data",
   "keywords": [
@@ -22,7 +22,7 @@
     "supertest": "0.8.1",
     "mongoose-time": "0.1.0",
     "express": "3.4.4",
-    "component-hooks": "^0.4.0"
+    "component-hooks": "^0.4.3"
   },
   "license": "MIT"
 }
